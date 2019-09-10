@@ -30,12 +30,15 @@ def submit():
          entry_5.get(),
          entry_6.get())
 
-    curr.execute(' INSERT INTO DB(Nom,Pernom,NDossier,Doc,CIN,DG,REG) VALUES ("{}","{}","{}","{}","{}","{}","{}")'.format(entry_1.get(),
-                                                             entry_2.get(),
-                                                             entry_3.get(),
-                                                             entry_4.get(),
-                                                            entry_5.get(),
-                                                            entry_6.get(),
+
+
+
+        curr.execute(' INSERT INTO DB(Nom,Pernom,NDossier,Doc,CIN,DG,REG) VALUES ("{}","{}","{}","{}","{}","{}","{}")'.format(entry_1.get(),
+                                                                     entry_2.get(),
+                                                                     entry_3.get(),
+                                                                     entry_4.get(),
+                                                                    entry_5.get(),
+                                                                    entry_6.get(),
                                                             entry_7.get()))
 
     con.commit()

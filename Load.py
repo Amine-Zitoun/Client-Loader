@@ -93,11 +93,11 @@ def load():
 
 
 
+scrollbar = Scrollbar(root)
+scrollbar.pack(side=RIGHT, fill=Y)
 
 
 
-
-scrollbar = Scrollbar(root, orient="vertical")
 
 
 label_0 = Label(root,text="LOAD",width=20,font=("Arial",28,'bold'),fg='black')
@@ -149,8 +149,8 @@ style.configure("mystyle.Treeview", highlightthickness=5, bd=0, font=('Calibri',
 style.configure("mystyle.Treeview.Heading", font=('Calibri', 20,'bold'),anchor="e") # Modify the font of the headings
 #style.layout("mystyle.Treeview", [('mystyle.Treeview.treearea', {'sticky': 'nswe'})])
 
-cols = ('Nom', 'Prenom', 'CIN','Region',"NDossier","Diagnostic","Docteur")
-listbox = ttk.Treeview(root, columns=cols, show='headings',style="mystyle.Treeview")
+cols = ('Nom', 'Prenom', 'CIN','Region',"N° Dossier","Diagnostic","Docteur")
+listbox = ttk.Treeview(root, columns=cols, show='headings',style="mystyle.Treeview", yscrollcommand=scrollbar.set)
 for col in cols:
     listbox.heading(col, text=col ,anchor=W)
 listbox.place(x=20,y=380)
