@@ -20,6 +20,7 @@ root.title('Enregister Une Malade')
 con = lite.connect("db.db")
 curr = con.cursor()
 
+
 def submit():
     entry_list = [entry_1,entry_2,entry_3,entry_4,entry_5,entry_6,entry_7,entry_8]
 
@@ -32,15 +33,23 @@ def submit():
 
 
 
-
-    curr.execute(' INSERT INTO DB(Nom,Pernom,NDossier,Doc,CIN,DG,REG) VALUES ("{}","{}","{}","{}","{}","{}","{}")'.format(entry_1.get(),
-                                                                    entry_2.get(),
-                                                                    entry_3.get(),
-                                                                    entry_4.get(),
-                                                                    entry_5.get(),
-                                                                    entry_6.get(),
-                                                            entry_7.get()))
-
+    try:
+        curr.execute(' INSERT INTO DB(Nom,Pernom,NDossier,Doc,CIN,DG,REG) VALUES ("{}","{}","{}","{}","{}","{}","{}")'.format(entry_1.get(),
+                                                                        entry_2.get(),
+                                                                        entry_3.get(),
+                                                                        entry_4.get(),
+                                                                        entry_5.get(),
+                                                                        entry_6.get(),
+                                                                entry_7.get()))
+    except Exception as e:
+        curr.execute("CREATE TABLE DB( Nom TEXT NOT NULL,Pernom TEXT NOT NULL,NDossier INT NOT NULL,Doc TEXT NOT NULL,CIN INT NOT NULL, DG TEXT NOT NULL,REG TEXT NOT NULL,TEL INT NOT NULL)")
+        curr.execute(' INSERT INTO DB(Nom,Pernom,NDossier,Doc,CIN,DG,REG) VALUES ("{}","{}","{}","{}","{}","{}","{}")'.format(entry_1.get(),
+                                                                        entry_2.get(),
+                                                                        entry_3.get(),
+                                                                        entry_4.get(),
+                                                                        entry_5.get(),
+                                                                        entry_6.get(),
+                                                                entry_7.get()))
     con.commit()
     for i in entry_list:
         i.delete(0,'end')
