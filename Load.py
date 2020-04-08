@@ -28,8 +28,32 @@ table.place(x=150,y=380)
 
 
 widgets={}
+
+
+
+
+def select():
+    curItem = listbox.focus()
+    print (listbox.item(curItem))
+    print( len(listbox.item(curItem)['values']))
+    Name = listbox.item(curItem)['values'][0]
+    pname = listbox.item(curItem)['values'][1]
+    sql = "DELETE FROM db WHERE Nom = {}".format(Name)
+    print(sql)
+    curr.execute("DELETE FROM db WHERE Nom = '{}' AND Pernom= '{}'".format(Name,pname))
+
+    sql = "SELECT * FROM db"
+    curr.execute(sql)
+    print (curr.fetchall())
+    con.commit()
+    listbox.delete(curItem)
+
+
+
+
+
 def load():
-    #entry_list = [entry_2,entry_3,entry_4,entry_5]
+    entry_list = [entry_2,entry_3,entry_4,entry_5,entry_6,entry_7,entry_8]
 
     pre = entry_2.get()
     nd = entry_3.get()
@@ -106,7 +130,8 @@ def load():
     #for i in listbox.get_children():
     #    listbox.delete(i)
 
-
+    for i in entry_list:
+        i.delete(0,'end')
 
 
 
@@ -195,7 +220,7 @@ listbox.place(x=20,y=420)
 
 
 Button(root,text="OK",width=10,bg='brown',fg='white',height=2 ,font=('bolder',12),command=load).place(x=580,y=680)
-
+Button(root,text="Delete",width=10,bg='brown',fg='white',height=2 ,font=('bolder',12),command=select).place(x=700,y=680)
 mainloop()
 
 
